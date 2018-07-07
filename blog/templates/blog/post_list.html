@@ -1,20 +1,13 @@
-<html>
-        <head>
-                <title>Genealogy</title>
-        </head>
-            <body>
-                <div>
-                    <h1><a href="/">Genealogy - Ahnenforschung leicht gemacht</a></h1>
-                </div>
-        
-                
-                {% for post in posts %}
-                    <div>
-                        <p>{{ post.published_date }}</p>
-                        <h1><a href="">{{ post.title }}</a></h1>
-                        <p>{{ post.text|linebreaksbr }}</p>
-                        <br>
-                    </div>
-                {% endfor %}
-            </body>
-</html>
+{% extends 'blog/base.html' %}
+
+                  {% block content %}  
+                        {% for post in posts %}
+                            <div class="post">
+                                <div class="date">
+                                    <p>{{ post.published_date }}</p>
+                                </div>
+                                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                                <p>{{ post.text|linebreaksbr }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endblock %}
